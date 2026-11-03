@@ -52,7 +52,7 @@ Search Posts takes X search operators. Type a query like this one.
 
 ## Raycast AI
 
-Mention Xquik in Raycast AI to ask about X (Twitter) data in plain words. Its 14 tools search posts & users, read profiles, posts, replies & threads, check follows, read trends and manage monitors. Raycast asks you to confirm before a tool creates or deletes a monitor.
+Mention Xquik in Raycast AI to ask about X (Twitter) data in plain words. Its 15 tools search posts & users, read profiles, posts, replies & threads, save post media, check follows, read trends and manage monitors. Raycast asks you to confirm before a tool creates or deletes a monitor.
 
 ## Prices
 

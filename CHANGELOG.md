@@ -12,4 +12,4 @@
 - Download post photos & videos to your Downloads folder, straight from a copied link.
 - Open a copied post link with no typing.
 - Rerun recent searches, or save a search as a Quicklink.
-- Ask Raycast AI about X (Twitter) data through 14 tools.
+- Ask Raycast AI about X (Twitter) data through 15 tools.

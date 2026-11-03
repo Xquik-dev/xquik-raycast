@@ -360,6 +360,11 @@
       "description": "List the posts in the conversation thread of an X post."
     },
     {
+      "name": "download-post-media",
+      "title": "Download Post Media",
+      "description": "Save the photos and videos of an X post to the Downloads folder."
+    },
+    {
       "name": "check-follow",
       "title": "Check Follow",
       "description": "Check whether 1 X account follows another, in both directions."
