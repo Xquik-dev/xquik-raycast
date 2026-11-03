@@ -10,6 +10,7 @@ import {
   postMetrics,
   postTitle,
   profileMarkdown,
+  repostedFrom,
 } from "../src/lib/format";
 
 describe("compactCount", () => {
@@ -39,6 +40,20 @@ describe("postTitle", () => {
 
   test("names a post with no text", () => {
     expect(postTitle("  ")).toBe("Post");
+  });
+
+  test("drops a repost's RT prefix", () => {
+    expect(postTitle("RT @WhiteHouse: AMERICA IS GOING BACK TO THE MOON.")).toBe("AMERICA IS GOING BACK TO THE MOON.");
+  });
+});
+
+describe("repostedFrom", () => {
+  test("names the original author of a repost", () => {
+    expect(repostedFrom("RT @NASAArtemis: Crews train for the Moon.")).toBe("NASAArtemis");
+  });
+
+  test("finds no original author in a post", () => {
+    expect(repostedFrom("Meet Messier 106. RT @NASA: later")).toBeUndefined();
   });
 });
 

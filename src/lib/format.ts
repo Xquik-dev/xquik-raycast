@@ -17,8 +17,15 @@ export function formatDay(date: string): string {
   return DAY_FORMAT.format(new Date(date));
 }
 
+const REPOST_PREFIX = /^RT @(\w+): /;
+
+// A repost's text starts with "RT @handle: ", which fills a narrow list row before the post itself.
+export function repostedFrom(text: string): string | undefined {
+  return text.match(REPOST_PREFIX)?.[1];
+}
+
 export function postTitle(text: string): string {
-  return text.replace(/\s+/g, " ").trim() || "Post";
+  return text.replace(REPOST_PREFIX, "").replace(/\s+/g, " ").trim() || "Post";
 }
 
 export function escapeMarkdown(text: string): string {
