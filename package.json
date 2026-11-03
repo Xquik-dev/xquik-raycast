@@ -301,6 +301,21 @@
         "twitter",
         "x"
       ]
+    },
+    {
+      "name": "monitor-events-menu-bar",
+      "title": "Monitor Events in Menu Bar",
+      "subtitle": "Xquik",
+      "description": "Show new events from your X (Twitter) monitors in the menu bar.",
+      "mode": "menu-bar",
+      "interval": "10m",
+      "keywords": [
+        "notifications",
+        "alerts",
+        "menu bar",
+        "twitter",
+        "x"
+      ]
     }
   ],
   "tools": [

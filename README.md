@@ -32,6 +32,7 @@ Raycast keeps the key in its encrypted local store. The extension sends it only 
 - **View Trends** lists what's trending in 16 places.
 - **Manage Monitors** creates, pauses & deletes account and keyword monitors.
 - **View Monitor Events** lists the latest posts & changes your monitors found.
+- **Monitor Events in Menu Bar** shows how many new events your monitors found, and checks every 10 minutes.
 
 Each post opens in a detail view. From there you can open it on X, read its replies, thread & quotes, open its author, copy its text or link, and save its media.
 
