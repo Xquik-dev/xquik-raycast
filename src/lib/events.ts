@@ -98,3 +98,8 @@ export function newestEventDate(events: MonitorEvent[]): string | undefined {
     undefined,
   );
 }
+
+// A monitor can watch 30 event types, so a row names 1 type and counts several.
+export function eventTypeSummary(types: readonly string[]): string {
+  return types.length === 1 ? eventLabel(types[0]) : `${types.length} Events`;
+}

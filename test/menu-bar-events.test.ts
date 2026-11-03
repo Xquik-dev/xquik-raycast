@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 
-const { newestEventDate, unseenEvents } = await import("../src/lib/events");
+const { eventTypeSummary, newestEventDate, unseenEvents } = await import("../src/lib/events");
 
 const event = (id: string, occurredAt: string) => ({ id, type: "tweet.new", occurredAt, data: {} });
 
@@ -31,5 +31,15 @@ describe("newestEventDate", () => {
 
   test("has no date without events", () => {
     expect(newestEventDate([])).toBeUndefined();
+  });
+});
+
+describe("eventTypeSummary", () => {
+  test("names a single event type", () => {
+    expect(eventTypeSummary(["tweet.new"])).toBe("New Post");
+  });
+
+  test("counts several event types", () => {
+    expect(eventTypeSummary(["tweet.new", "tweet.reply", "follower.added"])).toBe("3 Events");
   });
 });
