@@ -32,3 +32,9 @@ mock.module("@raycast/api", () => ({
   },
   Toast: { Style: { Animated: "animated", Success: "success", Failure: "failure" } },
 }));
+
+mock.module("@raycast/utils", () => ({
+  showFailureToast: async (_error: unknown, options: ShownToast) => {
+    host.toasts.push(options);
+  },
+}));

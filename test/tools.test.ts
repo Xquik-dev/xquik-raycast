@@ -84,9 +84,21 @@ describe("create-monitor", () => {
 });
 
 describe("delete-monitor", () => {
-  test("the confirmation is destructive and states the target", async () => {
-    const shown = await confirmDelete({ kind: "keyword", id: "21", target: "xquik" });
+  test("the confirmation is destructive and names the monitor its ID reads", async () => {
+    const calls = stubFetch({
+      id: "21",
+      query: "artemis launch",
+      eventTypes: ["tweet.new"],
+      isActive: true,
+      createdAt: "2025-01-15T12:00:00Z",
+    });
+    const shown = await confirmDelete({ kind: "keyword", id: "21" });
+    expect(calls).toEqual(["GET https://xquik.com/api/v1/monitors/keywords/21 undefined"]);
     expect(shown?.style).toBe("destructive");
-    expect(shown?.info).toEqual([{ name: "Target", value: "xquik" }]);
+    expect(shown?.message).toBe("Delete the monitor for artemis launch?");
+    expect(shown?.info).toEqual([
+      { name: "Target", value: "artemis launch" },
+      { name: "Monitor ID", value: "21" },
+    ]);
   });
 });
