@@ -56,10 +56,11 @@ export default function Command({ arguments: { query } }: LaunchProps<{ argument
       showErrorToast(failure, revalidate);
     },
   });
+  const isWaiting = !isIdle && (isLoading || (!data && !error));
   const searchAction = <SearchAction search={search} />;
 
   function emptyView() {
-    if (isLoading) return null;
+    if (isWaiting) return null;
     if (isIdle) return <IdleSearchView search={search} />;
     if (error) return <ErrorView error={error} onRetry={revalidate} firstAction={searchAction} />;
     return (
@@ -75,7 +76,7 @@ export default function Command({ arguments: { query } }: LaunchProps<{ argument
   return (
     <List
       filtering={false}
-      isLoading={isLoading}
+      isLoading={isWaiting}
       onSearchTextChange={search.setDraft}
       pagination={pagination}
       searchBarPlaceholder="Search Users"

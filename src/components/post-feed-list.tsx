@@ -38,6 +38,7 @@ export function PostFeedList({ feed, navigationTitle, search, searchBarAccessory
       showErrorToast(failure, revalidate);
     },
   });
+  const isWaiting = !isIdle && (isLoading || (!data && !error));
   const posts = uniqueById(data ?? []);
   const key = feedKey(feed);
   const searchAction: ReactNode = search && <SearchAction search={search} />;
@@ -51,7 +52,7 @@ export function PostFeedList({ feed, navigationTitle, search, searchBarAccessory
     : { searchBarPlaceholder: "Filter Posts" };
 
   function emptyView() {
-    if (isLoading) return null;
+    if (isWaiting) return null;
     if (search && isIdle) return <IdleSearchView search={search} />;
     if (error) return <ErrorView error={error} onRetry={revalidate} firstAction={searchAction} />;
     return (
@@ -66,7 +67,7 @@ export function PostFeedList({ feed, navigationTitle, search, searchBarAccessory
 
   return (
     <List
-      isLoading={isLoading}
+      isLoading={isWaiting}
       isShowingDetail={posts.length > 0}
       navigationTitle={navigationTitle}
       pagination={pagination}

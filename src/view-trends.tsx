@@ -42,9 +42,10 @@ export default function Command() {
       showErrorToast(failure, revalidate);
     },
   });
+  const isWaiting = isLoading || (!data && !error);
 
   function emptyView() {
-    if (isLoading) return null;
+    if (isWaiting) return null;
     if (error) return <ErrorView error={error} onRetry={revalidate} />;
     return (
       <List.EmptyView icon={Icon.Hashtag} title="No Trends Found" description="X lists no trends here right now." />
@@ -53,7 +54,7 @@ export default function Command() {
 
   return (
     <List
-      isLoading={isLoading}
+      isLoading={isWaiting}
       searchBarPlaceholder="Filter Trends"
       searchBarAccessory={
         <List.Dropdown tooltip="Place" value={place} onChange={setPlace}>

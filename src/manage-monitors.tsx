@@ -117,9 +117,10 @@ export default function Command() {
       showErrorToast(failure, revalidate);
     },
   });
+  const isWaiting = isLoading || (!data && !error);
 
   function emptyView() {
-    if (isLoading) return null;
+    if (isWaiting) return null;
     if (error) return <ErrorView error={error} onRetry={revalidate} />;
     return (
       <List.EmptyView
@@ -137,7 +138,7 @@ export default function Command() {
 
   return (
     <List
-      isLoading={isLoading}
+      isLoading={isWaiting}
       pagination={pagination}
       searchBarPlaceholder="Filter Monitors"
       searchBarAccessory={

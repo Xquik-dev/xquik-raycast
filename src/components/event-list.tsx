@@ -51,10 +51,11 @@ export function EventList({ filter = {}, navigationTitle }: EventListProps) {
       showErrorToast(failure, revalidate);
     },
   });
+  const isWaiting = isLoading || (!data && !error);
   const events = data ?? [];
 
   function emptyView() {
-    if (isLoading) return null;
+    if (isWaiting) return null;
     if (error) return <ErrorView error={error} onRetry={revalidate} />;
     return (
       <List.EmptyView icon={Icon.Bell} title="No Events Yet" description="Events from your monitors show up here." />
@@ -63,7 +64,7 @@ export function EventList({ filter = {}, navigationTitle }: EventListProps) {
 
   return (
     <List
-      isLoading={isLoading}
+      isLoading={isWaiting}
       isShowingDetail={events.length > 0}
       navigationTitle={navigationTitle}
       pagination={pagination}
