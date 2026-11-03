@@ -8,5 +8,6 @@
 - Check whether 1 account follows another.
 - View trends for 16 places.
 - Create, pause & delete account and keyword monitors, then read their events.
-- Download post photos & videos to your Downloads folder.
+- Download post photos & videos to your Downloads folder, straight from a copied link.
+- Open a copied post link with no typing.
 - Ask Raycast AI about X (Twitter) data through 14 tools.

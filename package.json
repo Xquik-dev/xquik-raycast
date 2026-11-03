@@ -5,9 +5,25 @@
   "description": "Search X (Twitter) data with the world's fastest and cheapest X Twitter data API. Needs an Xquik API key with credits. Not affiliated with X Corp.",
   "icon": "icon.png",
   "author": "burak-bayir",
-  "platforms": ["macOS", "Windows"],
-  "categories": ["Data", "Web", "Communication"],
-  "keywords": ["x", "twitter", "tweets", "x api", "twitter api", "x data", "trends", "monitors"],
+  "platforms": [
+    "macOS",
+    "Windows"
+  ],
+  "categories": [
+    "Data",
+    "Web",
+    "Communication"
+  ],
+  "keywords": [
+    "x",
+    "twitter",
+    "tweets",
+    "x api",
+    "twitter api",
+    "x data",
+    "trends",
+    "monitors"
+  ],
   "license": "MIT",
   "preferences": [
     {
@@ -26,14 +42,35 @@
       "subtitle": "Xquik",
       "description": "Search all public X (Twitter) posts, with no date limit.",
       "mode": "view",
-      "arguments": [{ "name": "query", "type": "text", "placeholder": "Query", "required": false }]
+      "keywords": [
+        "tweets",
+        "twitter",
+        "x",
+        "search twitter"
+      ],
+      "arguments": [
+        {
+          "name": "query",
+          "type": "text",
+          "placeholder": "Query",
+          "required": false
+        }
+      ]
     },
     {
       "name": "advanced-search",
       "title": "Advanced Search",
       "subtitle": "Xquik",
       "description": "Find X (Twitter) posts by author, date, engagement & media.",
-      "mode": "view"
+      "mode": "view",
+      "keywords": [
+        "tweets",
+        "twitter",
+        "x",
+        "filters",
+        "operators",
+        "date range"
+      ]
     },
     {
       "name": "search-users",
@@ -41,7 +78,21 @@
       "subtitle": "Xquik",
       "description": "Find X (Twitter) accounts by name or username.",
       "mode": "view",
-      "arguments": [{ "name": "query", "type": "text", "placeholder": "Query", "required": false }]
+      "keywords": [
+        "accounts",
+        "people",
+        "handle",
+        "twitter",
+        "x"
+      ],
+      "arguments": [
+        {
+          "name": "query",
+          "type": "text",
+          "placeholder": "Query",
+          "required": false
+        }
+      ]
     },
     {
       "name": "get-user-profile",
@@ -49,7 +100,22 @@
       "subtitle": "Xquik",
       "description": "Show an X (Twitter) profile with counts, links & contact details.",
       "mode": "view",
-      "arguments": [{ "name": "username", "type": "text", "placeholder": "Username or Link", "required": true }]
+      "keywords": [
+        "profile",
+        "account",
+        "bio",
+        "followers",
+        "twitter",
+        "x"
+      ],
+      "arguments": [
+        {
+          "name": "username",
+          "type": "text",
+          "placeholder": "Username or Link",
+          "required": true
+        }
+      ]
     },
     {
       "name": "get-user-posts",
@@ -57,7 +123,21 @@
       "subtitle": "Xquik",
       "description": "List the latest posts from any public X (Twitter) account.",
       "mode": "view",
-      "arguments": [{ "name": "username", "type": "text", "placeholder": "Username or Link", "required": true }]
+      "keywords": [
+        "tweets",
+        "timeline",
+        "latest",
+        "twitter",
+        "x"
+      ],
+      "arguments": [
+        {
+          "name": "username",
+          "type": "text",
+          "placeholder": "Username or Link",
+          "required": true
+        }
+      ]
     },
     {
       "name": "get-user-mentions",
@@ -65,7 +145,21 @@
       "subtitle": "Xquik",
       "description": "List public posts that mention any X (Twitter) account.",
       "mode": "view",
-      "arguments": [{ "name": "username", "type": "text", "placeholder": "Username or Link", "required": true }]
+      "keywords": [
+        "mentions",
+        "tagged",
+        "brand",
+        "twitter",
+        "x"
+      ],
+      "arguments": [
+        {
+          "name": "username",
+          "type": "text",
+          "placeholder": "Username or Link",
+          "required": true
+        }
+      ]
     },
     {
       "name": "get-post",
@@ -73,7 +167,21 @@
       "subtitle": "Xquik",
       "description": "Open an X (Twitter) post from its link or ID.",
       "mode": "view",
-      "arguments": [{ "name": "post", "type": "text", "placeholder": "Post Link or ID", "required": true }]
+      "keywords": [
+        "tweet",
+        "open tweet",
+        "link",
+        "twitter",
+        "x"
+      ],
+      "arguments": [
+        {
+          "name": "post",
+          "type": "text",
+          "placeholder": "Post Link or ID",
+          "required": false
+        }
+      ]
     },
     {
       "name": "get-post-replies",
@@ -81,7 +189,46 @@
       "subtitle": "Xquik",
       "description": "List the replies to any X (Twitter) post.",
       "mode": "view",
-      "arguments": [{ "name": "post", "type": "text", "placeholder": "Post Link or ID", "required": true }]
+      "keywords": [
+        "tweet replies",
+        "comments",
+        "conversation",
+        "twitter",
+        "x"
+      ],
+      "arguments": [
+        {
+          "name": "post",
+          "type": "text",
+          "placeholder": "Post Link or ID",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "download-post-media",
+      "title": "Download Post Media",
+      "subtitle": "Xquik",
+      "description": "Save the photos & videos of an X (Twitter) post to your Downloads folder.",
+      "mode": "no-view",
+      "keywords": [
+        "video",
+        "download video",
+        "save video",
+        "photos",
+        "gif",
+        "tweet",
+        "twitter",
+        "x"
+      ],
+      "arguments": [
+        {
+          "name": "post",
+          "type": "text",
+          "placeholder": "Post Link or ID",
+          "required": false
+        }
+      ]
     },
     {
       "name": "check-follow",
@@ -89,9 +236,27 @@
       "subtitle": "Xquik",
       "description": "Check whether 1 X (Twitter) account follows another.",
       "mode": "view",
+      "keywords": [
+        "follows",
+        "follower",
+        "following",
+        "mutual",
+        "twitter",
+        "x"
+      ],
       "arguments": [
-        { "name": "source", "type": "text", "placeholder": "Source Account", "required": true },
-        { "name": "target", "type": "text", "placeholder": "Target Account", "required": true }
+        {
+          "name": "source",
+          "type": "text",
+          "placeholder": "Source Account",
+          "required": true
+        },
+        {
+          "name": "target",
+          "type": "text",
+          "placeholder": "Target Account",
+          "required": true
+        }
       ]
     },
     {
@@ -99,21 +264,43 @@
       "title": "View Trends",
       "subtitle": "Xquik",
       "description": "See what's trending on X (Twitter) by country.",
-      "mode": "view"
+      "mode": "view",
+      "keywords": [
+        "trending",
+        "hashtags",
+        "topics",
+        "twitter",
+        "x"
+      ]
     },
     {
       "name": "manage-monitors",
       "title": "Manage Monitors",
       "subtitle": "Xquik",
       "description": "Create, pause & delete X (Twitter) account and keyword monitors.",
-      "mode": "view"
+      "mode": "view",
+      "keywords": [
+        "track",
+        "alerts",
+        "watch",
+        "keyword",
+        "twitter",
+        "x"
+      ]
     },
     {
       "name": "view-monitor-events",
       "title": "View Monitor Events",
       "subtitle": "Xquik",
       "description": "Read the latest events from your monitors.",
-      "mode": "view"
+      "mode": "view",
+      "keywords": [
+        "alerts",
+        "notifications",
+        "activity",
+        "twitter",
+        "x"
+      ]
     }
   ],
   "tools": [

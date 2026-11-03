@@ -10,6 +10,7 @@ import { uniqueById } from "./lib/feeds";
 import { compactCount, profileLink } from "./lib/format";
 import { Profile } from "./lib/schemas";
 import { fetchUserPage } from "./lib/users";
+import { VIEW_SHORTCUTS } from "./lib/shortcuts";
 
 const loadUserPage =
   (query: string) =>
@@ -28,27 +29,44 @@ function UserRow({ user, firstAction }: { user: Profile; firstAction: ReactNode 
       accessories={typeof followers === "number" ? [{ text: compactCount(followers), tooltip: "Followers" }] : []}
       actions={
         <ActionPanel>
-          {firstAction}
-          <Action.Push
-            title="View Profile"
-            icon={Icon.Person}
-            target={<ProfileDetail profile={user} navigationTitle={`@${username}`} />}
-          />
-          <Action.OpenInBrowser url={profileLink(username)} />
-          <Action.Push
-            title="View Posts"
-            icon={Icon.List}
-            target={<PostFeedList feed={{ kind: "userPosts", user: username }} navigationTitle={`@${username}`} />}
-          />
-          <Action.CopyToClipboard title="Copy Username" content={username} shortcut={Keyboard.Shortcut.Common.Copy} />
+          <ActionPanel.Section>
+            {firstAction}
+            <Action.Push
+              title="View Profile"
+              icon={Icon.Person}
+              target={<ProfileDetail profile={user} navigationTitle={`@${username}`} />}
+            />
+            <Action.Push
+              title="View Posts"
+              icon={Icon.List}
+              shortcut={VIEW_SHORTCUTS.posts}
+              target={<PostFeedList feed={{ kind: "userPosts", user: username }} navigationTitle={`@${username}`} />}
+            />
+            <Action.OpenInBrowser url={profileLink(username)} shortcut={Keyboard.Shortcut.Common.Open} />
+          </ActionPanel.Section>
+          <ActionPanel.Section>
+            <Action.CopyToClipboard
+              title="Copy Profile Link"
+              content={profileLink(username)}
+              shortcut={Keyboard.Shortcut.Common.Copy}
+            />
+            <Action.CopyToClipboard
+              title="Copy Username"
+              content={username}
+              shortcut={Keyboard.Shortcut.Common.CopyName}
+            />
+          </ActionPanel.Section>
         </ActionPanel>
       }
     />
   );
 }
 
-export default function Command({ arguments: { query } }: LaunchProps<{ arguments: Arguments.SearchUsers }>) {
-  const search = useSubmittedSearch(query);
+export default function Command({
+  arguments: { query },
+  fallbackText,
+}: LaunchProps<{ arguments: Arguments.SearchUsers }>) {
+  const search = useSubmittedSearch(fallbackText ?? query);
   const isIdle = search.submitted === "";
   const { data, error, isLoading, pagination, revalidate } = useCachedPromise(loadUserPage, [search.submitted], {
     execute: !isIdle,

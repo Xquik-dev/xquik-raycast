@@ -27,6 +27,7 @@ Raycast keeps the key in its encrypted local store. The extension sends it only 
 - **Get User Mentions** lists public posts that mention an account.
 - **Get Post** opens 1 post from its link or ID.
 - **Get Post Replies** lists the replies to a post.
+- **Download Post Media** saves a post's photos & videos to your Downloads folder.
 - **Check Follow** shows whether 2 accounts follow each other.
 - **View Trends** lists what's trending in 16 places.
 - **Manage Monitors** creates, pauses & deletes account and keyword monitors.
@@ -34,7 +35,9 @@ Raycast keeps the key in its encrypted local store. The extension sends it only 
 
 Each post opens in a detail view. From there you can open it on X, read its replies, thread & quotes, open its author, copy its text or link, and save its media.
 
-Commands take a username, an @username or a profile link. Post commands take a post link or ID.
+Commands take a username, an @username or a profile link. Post commands take a post link or ID. Copy a post link on X, and the post commands open it with no typing.
+
+Root search finds each command by words like tweet, twitter, trends or followers. Set Search Posts as a fallback command to search X for whatever you typed.
 
 ## Search with operators
 

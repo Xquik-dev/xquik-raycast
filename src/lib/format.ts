@@ -112,3 +112,8 @@ export function compactProfile(profile: Profile) {
     links: profile.contactInfo?.links?.map((link) => link.url),
   };
 }
+
+export function savedMediaMessage(count: number): string {
+  if (count === 0) return "This Post Has No Media";
+  return `Saved ${count} ${count === 1 ? "File" : "Files"} to Downloads`;
+}
