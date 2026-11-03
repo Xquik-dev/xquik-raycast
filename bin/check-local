@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+for arg in "$@"; do
+	case $arg in
+		--no-status) ;;
+		*)
+			printf 'Unknown option: %s. Run bin/check-local or bin/check-local --no-status.\n' "$arg" >&2
+			exit 2
+			;;
+	esac
+done
+
+run() {
+	printf 'Running %s\n' "$*"
+	"$@"
+}
+
+run npm ci
+run npx ray lint
+run npx tsc --noEmit
+run npx ray build -e dist
+run bun test
+
+printf 'All checks passed\n'
