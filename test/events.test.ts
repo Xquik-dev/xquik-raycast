@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from "bun:test";
 
-const { eventLabel, eventPost, fetchEventPage } = await import("../src/lib/events");
+const { eventFields, eventLabel, eventPost, eventProfile, fetchEventPage } = await import("../src/lib/events");
 
 const realFetch = globalThis.fetch;
 afterEach(() => {
@@ -35,6 +35,38 @@ describe("eventPost", () => {
   test("finds no post in a profile event", () => {
     const data = { id: "11348282", username: "NASA", name: "NASA", description: "Space" };
     expect(eventPost({ ...shared, type: "follower.added", data })).toBeUndefined();
+  });
+});
+
+describe("non-post event details", () => {
+  const base = { id: "9", occurredAt: "2026-11-03T08:00:00Z" };
+
+  test("a metric change lists each field in order", () => {
+    const event = {
+      ...base,
+      type: "post.likes.changed",
+      data: { metric: "likes", previous: 10, current: 12, change: 2 },
+    };
+    expect(eventFields(event)).toEqual([
+      { title: "Metric", value: "likes" },
+      { title: "Previous", value: "10" },
+      { title: "Current", value: "12" },
+      { title: "Change", value: "2" },
+    ]);
+  });
+
+  test("a nested value reads as JSON and an empty one is left out", () => {
+    const event = { ...base, type: "profile.bio.changed", data: { before: { bio: "a" }, after: null } };
+    expect(eventFields(event)).toEqual([{ title: "Before", value: '{"bio":"a"}' }]);
+  });
+
+  test("a new follower reads as a profile", () => {
+    const event = { ...base, type: "follower.added", data: { id: "11348282", username: "NASA", name: "NASA" } };
+    expect(eventProfile(event)?.username).toBe("NASA");
+  });
+
+  test("data that is not an object has no fields", () => {
+    expect(eventFields({ ...base, type: "space.started", data: "started" })).toEqual([]);
   });
 });
 
