@@ -1,7 +1,5 @@
-import { afterEach, describe, expect, mock, test } from "bun:test";
+import { afterEach, describe, expect, test } from "bun:test";
 import { z } from "zod";
-
-mock.module("@raycast/api", () => ({ getPreferenceValues: () => ({ apiKey: "xq_test_key" }) }));
 
 const { request, fetchFile } = await import("../src/lib/api");
 const { describeError, XquikError } = await import("../src/lib/errors");

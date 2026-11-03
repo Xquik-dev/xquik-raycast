@@ -1,38 +1,12 @@
-import { beforeEach, describe, expect, mock, test } from "bun:test";
+import { beforeEach, describe, expect, test } from "bun:test";
 
-const opened: string[] = [];
-type ShownToast = {
-  title: string;
-  message: string;
-  primaryAction: { title: string; onAction: (toast: unknown) => void };
-};
-
-const toasts: ShownToast[] = [];
-let preferencesOpened = 0;
-
-mock.module("@raycast/api", () => ({
-  getPreferenceValues: () => ({ apiKey: "xq_test_key" }),
-  open: async (target: string) => {
-    opened.push(target);
-  },
-  openExtensionPreferences: async () => {
-    preferencesOpened += 1;
-  },
-  showToast: async (options: ShownToast) => {
-    toasts.push(options);
-  },
-  Toast: { Style: { Failure: "failure" } },
-}));
+import { host } from "./raycast-api";
 
 const { SITE_URL } = await import("../src/lib/api");
 const { showErrorToast } = await import("../src/lib/error-toast");
 const { XquikError } = await import("../src/lib/errors");
 
-beforeEach(() => {
-  opened.length = 0;
-  toasts.length = 0;
-  preferencesOpened = 0;
-});
+beforeEach(() => host.reset());
 
 describe("the Xquik link", () => {
   test("is the bare site", () => {
@@ -42,9 +16,9 @@ describe("the Xquik link", () => {
   for (const kind of ["credits", "paused"] as const) {
     test(`the ${kind} toast opens exactly https://xquik.com`, async () => {
       await showErrorToast(new XquikError(kind), () => undefined);
-      expect(toasts[0].primaryAction.title).toBe("Open Xquik");
-      toasts[0].primaryAction.onAction({});
-      expect(opened).toEqual(["https://xquik.com"]);
+      expect(host.toasts[0].primaryAction.title).toBe("Open Xquik");
+      host.toasts[0].primaryAction.onAction({});
+      expect(host.opened).toEqual(["https://xquik.com"]);
     });
   }
 });
@@ -52,15 +26,15 @@ describe("the Xquik link", () => {
 describe("showErrorToast", () => {
   test("shows the title and the server message", async () => {
     await showErrorToast(new XquikError("credits", "Insufficient credits."), () => undefined);
-    expect(toasts[0].title).toBe("Out of Credits");
-    expect(toasts[0].message).toBe("Insufficient credits.");
+    expect(host.toasts[0].title).toBe("Out of Credits");
+    expect(host.toasts[0].message).toBe("Insufficient credits.");
   });
 
   test("an auth failure opens the extension preferences", async () => {
     await showErrorToast(new XquikError("auth"), () => undefined);
-    toasts[0].primaryAction.onAction({});
-    expect(preferencesOpened).toBe(1);
-    expect(opened).toEqual([]);
+    host.toasts[0].primaryAction.onAction({});
+    expect(host.preferencesOpened).toBe(1);
+    expect(host.opened).toEqual([]);
   });
 
   test("a retryable failure hides the toast and retries", async () => {
@@ -69,7 +43,7 @@ describe("showErrorToast", () => {
     await showErrorToast(new XquikError("rateLimited"), () => {
       retries += 1;
     });
-    toasts[0].primaryAction.onAction({ hide: () => (hides += 1) });
+    host.toasts[0].primaryAction.onAction({ hide: () => (hides += 1) });
     expect(retries).toBe(1);
     expect(hides).toBe(1);
   });

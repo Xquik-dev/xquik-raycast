@@ -1,6 +1,4 @@
-import { afterEach, describe, expect, mock, test } from "bun:test";
-
-mock.module("@raycast/api", () => ({ getPreferenceValues: () => ({ apiKey: "xq_test_key" }) }));
+import { afterEach, describe, expect, test } from "bun:test";
 
 const { createMonitor, deleteMonitor, fetchMonitorPage, MONITOR_KINDS, monitorTarget, setMonitorActive } =
   await import("../src/lib/monitors");

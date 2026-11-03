@@ -1,9 +1,4 @@
-import { afterEach, describe, expect, mock, test } from "bun:test";
-
-mock.module("@raycast/api", () => ({
-  Action: { Style: { Destructive: "destructive" } },
-  getPreferenceValues: () => ({ apiKey: "xq_test_key" }),
-}));
+import { afterEach, describe, expect, test } from "bun:test";
 
 const { confirmation: confirmCreate, default: create } = await import("../src/tools/create-monitor");
 const { confirmation: confirmDelete } = await import("../src/tools/delete-monitor");
