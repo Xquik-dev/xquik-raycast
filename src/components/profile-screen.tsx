@@ -44,6 +44,7 @@ export function ProfileDetail({ profile, isLoading, navigationTitle }: ProfileDe
 function ProfileMetadata({ profile }: { profile: Profile }) {
   const { Metadata } = Detail;
   const { followers, following, statusesCount, createdAt, location, url, contactInfo } = profile;
+  const links = contactInfo?.links?.filter((link) => link.url !== url) ?? [];
   const counts = [
     { title: "Followers", count: followers },
     { title: "Following", count: following },
@@ -57,9 +58,9 @@ function ProfileMetadata({ profile }: { profile: Profile }) {
       {createdAt && <Metadata.Label title="Joined" text={formatDay(createdAt)} />}
       {location && <Metadata.Label title="Location" text={location} />}
       {url && <Metadata.Link title="Website" target={url} text={url} />}
-      {contactInfo?.links
-        ?.filter((link) => link.url !== url)
-        .map((link) => <Metadata.Link key={link.url} title="Link" target={link.url} text={link.url} />)}
+      {links.map((link) => (
+        <Metadata.Link key={link.url} title="Link" target={link.url} text={link.url} />
+      ))}
       {contactInfo?.emails?.map((email) => (
         <Metadata.Link key={email.value} title="Email" target={`mailto:${email.value}`} text={email.value} />
       ))}
