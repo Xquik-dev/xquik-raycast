@@ -34,6 +34,14 @@ Each post opens in a detail view. From there you can open it on X, read its repl
 
 Commands take a username, an @username or a profile link. Post commands take a post link or ID.
 
+## Search with operators
+
+Search Posts takes X search operators. Type a query like this one.
+
+```text
+"twitter api" min_faves:10 since:2026-10-01
+```
+
 ## Raycast AI
 
 Mention Xquik in Raycast AI to ask about X (Twitter) data in plain words. Its 14 tools search posts & users, read profiles, posts, replies & threads, check follows, read trends and manage monitors. Raycast asks you to confirm before a tool creates or deletes a monitor.
