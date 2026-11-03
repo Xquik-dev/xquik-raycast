@@ -20,8 +20,8 @@ run() {
 
 run npm ci
 run npx ray lint
-run npx tsc --noEmit
 run npx ray build -e dist
+run npx tsc --noEmit
 run bun test
 
 printf 'All checks passed\n'
