@@ -17,13 +17,14 @@ describe("eventLabel", () => {
     ["tweet.retweet", "New Repost"],
     ["profile.pinned_tweet.changed", "Pinned Post Changed"],
     ["follower.removed", "Follower Lost"],
+    ["post.retweets.changed", "Reposts Changed"],
   ] as const;
   for (const [type, label] of cases) {
     test(`${type} reads as ${label}`, () => expect(eventLabel(type)).toBe(label));
   }
 
   test("keeps the raw type of an unknown value", () => {
-    expect(eventLabel("post.likes.changed")).toBe("post.likes.changed");
+    expect(eventLabel("space.ended")).toBe("space.ended");
   });
 });
 

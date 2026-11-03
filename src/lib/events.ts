@@ -40,12 +40,25 @@ export const ACCOUNT_EVENT_LABELS: Record<string, string> = {
   "profile.following.changed": "Following Count Changed",
 };
 
+const POST_MONITOR_EVENT_LABELS: Record<string, string> = {
+  "post.reply.new": "New Reply",
+  "post.quote.new": "New Quote",
+  "post.likes.changed": "Likes Changed",
+  "post.retweets.changed": "Reposts Changed",
+  "post.replies.changed": "Replies Changed",
+  "post.quotes.changed": "Quotes Changed",
+  "post.bookmarks.changed": "Bookmarks Changed",
+  "post.views.changed": "Views Changed",
+  "post.edited": "Post Edited",
+  "post.deleted": "Post Deleted",
+};
+
 export type EventFilter = { monitorId?: string; keywordMonitorId?: string };
 
 export type EventPage = { events: MonitorEvent[]; nextCursor: string | undefined };
 
 export function eventLabel(type: string): string {
-  return ACCOUNT_EVENT_LABELS[type] ?? type;
+  return ACCOUNT_EVENT_LABELS[type] ?? POST_MONITOR_EVENT_LABELS[type] ?? type;
 }
 
 export function eventPost(event: MonitorEvent): Post | undefined {
