@@ -10,7 +10,7 @@ export default function Command({
   arguments: { query },
   fallbackText,
 }: LaunchProps<{ arguments: Arguments.SearchPosts }>) {
-  const search = useSubmittedSearch(fallbackText ?? query);
+  const search = useSubmittedSearch("search-posts", fallbackText ?? query);
   const [sort, setSort] = useState<SearchSort>("Latest");
   const [submittedSort, setSubmittedSort] = useState(sort);
   const sortedSearch: SubmittedSearch = {
@@ -18,6 +18,10 @@ export default function Command({
     isDirty: search.isDirty || (search.submitted !== "" && sort !== submittedSort),
     submit: () => {
       search.submit();
+      setSubmittedSort(sort);
+    },
+    run: (recent) => {
+      search.run(recent);
       setSubmittedSort(sort);
     },
   };

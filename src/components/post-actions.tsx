@@ -6,11 +6,12 @@ import { saveMedia } from "../lib/media";
 import { Post } from "../lib/schemas";
 import { PostFeedList } from "./post-feed-list";
 import { ProfileScreen } from "./profile-screen";
-import { VIEW_SHORTCUTS } from "../lib/shortcuts";
+import { SHORTCUTS } from "../lib/shortcuts";
 
 type PostActionsProps = {
   post: Post;
   firstAction?: ReactNode;
+  lastAction?: ReactNode;
 };
 
 async function downloadMedia(post: Post) {
@@ -26,7 +27,7 @@ async function downloadMedia(post: Post) {
   }
 }
 
-export function PostActions({ post, firstAction }: PostActionsProps) {
+export function PostActions({ post, firstAction, lastAction }: PostActionsProps) {
   const link = postLink(post);
   const { author } = post;
   return (
@@ -39,26 +40,26 @@ export function PostActions({ post, firstAction }: PostActionsProps) {
         <Action.Push
           title="View Replies"
           icon={Icon.Bubble}
-          shortcut={VIEW_SHORTCUTS.replies}
+          shortcut={SHORTCUTS.replies}
           target={<PostFeedList feed={{ kind: "replies", post: post.id }} navigationTitle="Replies" />}
         />
         <Action.Push
           title="View Thread"
           icon={Icon.List}
-          shortcut={VIEW_SHORTCUTS.thread}
+          shortcut={SHORTCUTS.thread}
           target={<PostFeedList feed={{ kind: "thread", post: post.id }} navigationTitle="Thread" />}
         />
         <Action.Push
           title="View Quotes"
           icon={Icon.QuoteBlock}
-          shortcut={VIEW_SHORTCUTS.quotes}
+          shortcut={SHORTCUTS.quotes}
           target={<PostFeedList feed={{ kind: "quotes", post: post.id }} navigationTitle="Quotes" />}
         />
         {author && (
           <Action.Push
             title="View Author"
             icon={Icon.Person}
-            shortcut={VIEW_SHORTCUTS.author}
+            shortcut={SHORTCUTS.author}
             target={<ProfileScreen user={author.username} navigationTitle={`@${author.username}`} />}
           />
         )}
@@ -79,6 +80,7 @@ export function PostActions({ post, firstAction }: PostActionsProps) {
           />
         ) : null}
       </ActionPanel.Section>
+      {lastAction && <ActionPanel.Section>{lastAction}</ActionPanel.Section>}
     </ActionPanel>
   );
 }

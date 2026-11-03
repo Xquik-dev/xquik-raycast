@@ -4,13 +4,13 @@ import { ReactNode } from "react";
 import { ErrorView } from "./components/error-view";
 import { PostFeedList } from "./components/post-feed-list";
 import { ProfileDetail } from "./components/profile-screen";
-import { IdleSearchView, SearchAction, useSubmittedSearch } from "./components/submitted-search";
+import { IdleSearchView, SaveSearchAction, SearchAction, useSubmittedSearch } from "./components/submitted-search";
 import { showErrorToast } from "./lib/error-toast";
 import { uniqueById } from "./lib/feeds";
 import { compactCount, profileLink } from "./lib/format";
 import { Profile } from "./lib/schemas";
 import { fetchUserPage } from "./lib/users";
-import { VIEW_SHORTCUTS } from "./lib/shortcuts";
+import { SHORTCUTS } from "./lib/shortcuts";
 
 const loadUserPage =
   (query: string) =>
@@ -19,7 +19,7 @@ const loadUserPage =
     return { data: users, hasMore: nextCursor !== undefined, cursor: nextCursor };
   };
 
-function UserRow({ user, firstAction }: { user: Profile; firstAction: ReactNode }) {
+function UserRow({ user, firstAction, query }: { user: Profile; firstAction: ReactNode; query: string }) {
   const { followers, name, profilePicture, username } = user;
   return (
     <List.Item
@@ -39,7 +39,7 @@ function UserRow({ user, firstAction }: { user: Profile; firstAction: ReactNode 
             <Action.Push
               title="View Posts"
               icon={Icon.List}
-              shortcut={VIEW_SHORTCUTS.posts}
+              shortcut={SHORTCUTS.posts}
               target={<PostFeedList feed={{ kind: "userPosts", user: username }} navigationTitle={`@${username}`} />}
             />
             <Action.OpenInBrowser url={profileLink(username)} shortcut={Keyboard.Shortcut.Common.Open} />
@@ -56,6 +56,9 @@ function UserRow({ user, firstAction }: { user: Profile; firstAction: ReactNode 
               shortcut={Keyboard.Shortcut.Common.CopyName}
             />
           </ActionPanel.Section>
+          <ActionPanel.Section>
+            <SaveSearchAction command="search-users" query={query} />
+          </ActionPanel.Section>
         </ActionPanel>
       }
     />
@@ -66,7 +69,7 @@ export default function Command({
   arguments: { query },
   fallbackText,
 }: LaunchProps<{ arguments: Arguments.SearchUsers }>) {
-  const search = useSubmittedSearch(fallbackText ?? query);
+  const search = useSubmittedSearch("search-users", fallbackText ?? query);
   const isIdle = search.submitted === "";
   const { data, error, isLoading, pagination, revalidate } = useCachedPromise(loadUserPage, [search.submitted], {
     execute: !isIdle,
@@ -74,7 +77,7 @@ export default function Command({
       showErrorToast(failure, revalidate);
     },
   });
-  const isWaiting = !isIdle && (isLoading || (!data && !error));
+  const isWaiting = isIdle ? search.isLoadingRecents : isLoading || (!data && !error);
   const searchAction = <SearchAction search={search} />;
 
   function emptyView() {
@@ -102,7 +105,7 @@ export default function Command({
     >
       {emptyView()}
       {uniqueById(data ?? []).map((user) => (
-        <UserRow key={user.id} user={user} firstAction={searchAction} />
+        <UserRow key={user.id} user={user} firstAction={searchAction} query={search.submitted} />
       ))}
     </List>
   );

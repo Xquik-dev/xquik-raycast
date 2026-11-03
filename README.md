@@ -39,6 +39,8 @@ Commands take a username, an @username or a profile link. Post commands take a p
 
 Root search finds each command by words like tweet, twitter, trends or followers. Set Search Posts as a fallback command to search X for whatever you typed.
 
+Search Posts & Search Users list your recent searches. Press ⌘ ⇧ S on a search to save it as a Quicklink, so it runs straight from root search.
+
 ## Search with operators
 
 Search Posts takes X search operators. Type a query like this one.
