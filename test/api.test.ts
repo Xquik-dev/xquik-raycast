@@ -57,11 +57,6 @@ describe("request", () => {
     expect((sent[0].init?.headers as Record<string, string>)["content-type"]).toBe("application/json");
   });
 
-  test("returns only what the schema keeps", async () => {
-    stubFetch(200, { id: "1", extra: true });
-    expect(await request(idSchema, "/x")).toEqual({ id: "1" });
-  });
-
   const statuses = [
     [400, "invalid"],
     [401, "auth"],

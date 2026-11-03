@@ -19,7 +19,7 @@ export const profileSchema = authorSchema.extend({
   contactInfo: z
     .object({
       emails: z.array(z.object({ value: z.string() })).nullish(),
-      links: z.array(z.object({ url: z.string(), network: z.string() })).nullish(),
+      links: z.array(z.object({ url: z.string() })).nullish(),
     })
     .nullish(),
 });

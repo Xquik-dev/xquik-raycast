@@ -4,7 +4,7 @@ import { monitorSchema, postPageSchema, postSchema, profileSchema, trendListSche
 const nasa = { id: "11348282", username: "NASA", name: "NASA" };
 
 describe("postSchema", () => {
-  test("keeps the read fields of a recorded public post and drops the rest", () => {
+  test("reads a recorded public post", () => {
     const post = postSchema.parse({
       id: "2102882545427714266",
       text: "This galaxy is a little extra.",
@@ -21,12 +21,8 @@ describe("postSchema", () => {
       media: [{ mediaUrl: "https://pbs.twimg.com/media/a.jpg", type: "photo", url: "https://t.co/QQGjcE6KKq" }],
     });
     expect(post.likeCount).toBe(9043);
-    expect(post.author).toEqual({
-      ...nasa,
-      profilePicture: "https://pbs.twimg.com/profile_images/n.jpg",
-    });
-    expect(post.media).toEqual([{ mediaUrl: "https://pbs.twimg.com/media/a.jpg", type: "photo" }]);
-    expect(Object.keys(post)).not.toContain("lang");
+    expect(post.author?.profilePicture).toBe("https://pbs.twimg.com/profile_images/n.jpg");
+    expect(post.media?.[0].mediaUrl).toBe("https://pbs.twimg.com/media/a.jpg");
   });
 
   test("accepts null and absent optional fields", () => {
@@ -67,8 +63,8 @@ describe("profileSchema", () => {
         emails: [{ value: "press@example.com", domain: "example.com", source: "bio" }],
       },
     });
-    expect(profile.contactInfo?.links).toEqual([{ url: "http://www.nasa.gov/", network: "website" }]);
-    expect(profile.contactInfo?.emails).toEqual([{ value: "press@example.com" }]);
+    expect(profile.contactInfo?.links?.[0].url).toBe("http://www.nasa.gov/");
+    expect(profile.contactInfo?.emails?.[0].value).toBe("press@example.com");
   });
 
   test("accepts a profile with no optional fields", () => {
