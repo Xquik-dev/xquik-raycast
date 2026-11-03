@@ -1,5 +1,7 @@
 # Xquik for Raycast
 
+[![Convex Component](https://www.convex.dev/components/badge/convex-xquik)](https://www.convex.dev/components/convex-xquik)
+
 Search X (Twitter) data from Raycast with your Xquik API key.
 
 Xquik is the world's fastest and cheapest X Twitter data API with the most complete X data. Most other Twitter APIs charge per request, even for empty pages & errors. Xquik charges only for delivered, unique, filter-matching results and never pads rows.
