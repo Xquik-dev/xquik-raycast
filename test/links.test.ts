@@ -1,7 +1,11 @@
 import { beforeEach, describe, expect, mock, test } from "bun:test";
 
 const opened: string[] = [];
-type ShownToast = { title: string; message: string; primaryAction: { title: string; onAction: (toast: unknown) => void } };
+type ShownToast = {
+  title: string;
+  message: string;
+  primaryAction: { title: string; onAction: (toast: unknown) => void };
+};
 
 const toasts: ShownToast[] = [];
 let preferencesOpened = 0;

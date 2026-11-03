@@ -1,13 +1,5 @@
 export type ErrorKind =
-  | "auth"
-  | "credits"
-  | "paused"
-  | "notFound"
-  | "invalid"
-  | "rateLimited"
-  | "upstream"
-  | "network"
-  | "unexpected";
+  "auth" | "credits" | "paused" | "notFound" | "invalid" | "rateLimited" | "upstream" | "network" | "unexpected";
 
 export type ErrorFix = "preferences" | "site" | "retry";
 

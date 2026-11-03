@@ -84,9 +84,7 @@ describe("create-monitor", () => {
   test("defaults to new posts", async () => {
     const calls = stubFetch({ id: "42", eventTypes: ["tweet.new"], isActive: true, createdAt: "2025-01-15T12:00:00Z" });
     expect(await create({ kind: "account", target: "NASA" })).toEqual({ id: "42", target: "NASA", isActive: true });
-    expect(calls[0]).toBe(
-      'POST https://xquik.com/api/v1/monitors {"username":"NASA","eventTypes":["tweet.new"]}',
-    );
+    expect(calls[0]).toBe('POST https://xquik.com/api/v1/monitors {"username":"NASA","eventTypes":["tweet.new"]}');
   });
 });
 
