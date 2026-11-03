@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "xquik",
-  "title": "Xquik - X (Twitter) Data",
+  "title": "Xquik for X (Twitter)",
   "description": "Search X (Twitter) data with the world's fastest and cheapest X Twitter data API. Needs an Xquik API key with credits. Not affiliated with X Corp.",
   "icon": "icon.png",
   "author": "burak-bayir",
@@ -11,8 +11,9 @@
   ],
   "categories": [
     "Data",
-    "Web",
-    "Communication"
+    "Communication",
+    "News",
+    "Web"
   ],
   "keywords": [
     "x",
@@ -41,6 +42,7 @@
       "title": "Search Posts",
       "subtitle": "Xquik",
       "description": "Search all public X (Twitter) posts, with no date limit.",
+      "icon": "search-posts.png",
       "mode": "view",
       "keywords": [
         "tweets",
@@ -62,6 +64,7 @@
       "title": "Advanced Search",
       "subtitle": "Xquik",
       "description": "Find X (Twitter) posts by author, date, engagement & media.",
+      "icon": "advanced-search.png",
       "mode": "view",
       "keywords": [
         "tweets",
@@ -77,6 +80,7 @@
       "title": "Search Users",
       "subtitle": "Xquik",
       "description": "Find X (Twitter) accounts by name or username.",
+      "icon": "search-users.png",
       "mode": "view",
       "keywords": [
         "accounts",
@@ -99,6 +103,7 @@
       "title": "Get User Profile",
       "subtitle": "Xquik",
       "description": "Show an X (Twitter) profile with counts, links & contact details.",
+      "icon": "get-user-profile.png",
       "mode": "view",
       "keywords": [
         "profile",
@@ -122,6 +127,7 @@
       "title": "Get User Posts",
       "subtitle": "Xquik",
       "description": "List the latest posts from any public X (Twitter) account.",
+      "icon": "get-user-posts.png",
       "mode": "view",
       "keywords": [
         "tweets",
@@ -144,6 +150,7 @@
       "title": "Get User Mentions",
       "subtitle": "Xquik",
       "description": "List public posts that mention any X (Twitter) account.",
+      "icon": "get-user-mentions.png",
       "mode": "view",
       "keywords": [
         "mentions",
@@ -166,6 +173,7 @@
       "title": "Get Post",
       "subtitle": "Xquik",
       "description": "Open an X (Twitter) post from its link or ID.",
+      "icon": "get-post.png",
       "mode": "view",
       "keywords": [
         "tweet",
@@ -188,6 +196,7 @@
       "title": "Get Post Replies",
       "subtitle": "Xquik",
       "description": "List the replies to any X (Twitter) post.",
+      "icon": "get-post-replies.png",
       "mode": "view",
       "keywords": [
         "tweet replies",
@@ -210,6 +219,7 @@
       "title": "Download Post Media",
       "subtitle": "Xquik",
       "description": "Save the photos & videos of an X (Twitter) post to your Downloads folder.",
+      "icon": "download-post-media.png",
       "mode": "no-view",
       "keywords": [
         "video",
@@ -235,6 +245,7 @@
       "title": "Check Follow",
       "subtitle": "Xquik",
       "description": "Check whether 1 X (Twitter) account follows another.",
+      "icon": "check-follow.png",
       "mode": "view",
       "keywords": [
         "follows",
@@ -264,6 +275,7 @@
       "title": "View Trends",
       "subtitle": "Xquik",
       "description": "See what's trending on X (Twitter) by country.",
+      "icon": "view-trends.png",
       "mode": "view",
       "keywords": [
         "trending",
@@ -278,6 +290,7 @@
       "title": "Manage Monitors",
       "subtitle": "Xquik",
       "description": "Create, pause & delete X (Twitter) account and keyword monitors.",
+      "icon": "manage-monitors.png",
       "mode": "view",
       "keywords": [
         "track",
@@ -293,6 +306,7 @@
       "title": "View Monitor Events",
       "subtitle": "Xquik",
       "description": "Read the latest events from your monitors.",
+      "icon": "view-monitor-events.png",
       "mode": "view",
       "keywords": [
         "alerts",
@@ -307,6 +321,7 @@
       "title": "Monitor Events in Menu Bar",
       "subtitle": "Xquik",
       "description": "Show new events from your X (Twitter) monitors in the menu bar.",
+      "icon": "monitor-events-menu-bar.png",
       "mode": "menu-bar",
       "interval": "10m",
       "keywords": [
