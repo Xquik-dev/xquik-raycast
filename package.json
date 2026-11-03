@@ -44,8 +44,8 @@
       "arguments": [{ "name": "query", "type": "text", "placeholder": "Query", "required": false }]
     },
     {
-      "name": "look-up-profile",
-      "title": "Look Up Profile",
+      "name": "get-user-profile",
+      "title": "Get User Profile",
       "subtitle": "Xquik",
       "description": "Show an X (Twitter) profile with counts, links & contact details.",
       "mode": "view",
@@ -68,8 +68,8 @@
       "arguments": [{ "name": "username", "type": "text", "placeholder": "Username or Link", "required": true }]
     },
     {
-      "name": "look-up-post",
-      "title": "Look Up Post",
+      "name": "get-post",
+      "title": "Get Post",
       "subtitle": "Xquik",
       "description": "Open an X (Twitter) post from its link or ID.",
       "mode": "view",
