@@ -6,8 +6,7 @@
   "icon": "icon.png",
   "author": "burak-bayir",
   "platforms": [
-    "macOS",
-    "Windows"
+    "macOS"
   ],
   "categories": [
     "Data",

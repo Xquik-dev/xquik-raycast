@@ -2,6 +2,7 @@ import { afterEach, describe, expect, test } from "bun:test";
 
 const { confirmation: confirmCreate, default: create } = await import("../src/tools/create-monitor");
 const { confirmation: confirmDelete } = await import("../src/tools/delete-monitor");
+const { confirmation: confirmDownload } = await import("../src/tools/download-post-media");
 const { default: getPost } = await import("../src/tools/get-post");
 const { default: getTrends } = await import("../src/tools/get-trends");
 const { default: listEvents } = await import("../src/tools/list-monitor-events");
@@ -100,5 +101,14 @@ describe("delete-monitor", () => {
       { name: "Target", value: "artemis launch" },
       { name: "Monitor ID", value: "21" },
     ]);
+  });
+});
+
+describe("download-post-media", () => {
+  test("the confirmation names the post and says its media goes to Downloads", async () => {
+    const link = "https://x.com/NASA/status/2102882545427714266";
+    const shown = await confirmDownload({ post: link });
+    expect(shown?.message).toBe("Save the photos & videos of this post to your Downloads folder?");
+    expect(shown?.info).toEqual([{ name: "Post", value: link }]);
   });
 });
