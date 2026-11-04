@@ -8,10 +8,14 @@ type ShownToast = {
 
 export const host = {
   opened: [] as string[],
+  launched: [] as string[],
+  disabledCommands: [] as string[],
   toasts: [] as ShownToast[],
   preferencesOpened: 0,
   reset() {
     host.opened.length = 0;
+    host.launched.length = 0;
+    host.disabledCommands.length = 0;
     host.toasts.length = 0;
     host.preferencesOpened = 0;
   },
@@ -21,6 +25,11 @@ export const host = {
 mock.module("@raycast/api", () => ({
   Action: { Style: { Regular: "regular", Destructive: "destructive" } },
   getPreferenceValues: () => ({ apiKey: "xq_test_key" }),
+  launchCommand: async ({ name }: { name: string }) => {
+    if (host.disabledCommands.includes(name)) throw new Error(`The ${name} command is disabled.`);
+    host.launched.push(name);
+  },
+  LaunchType: { UserInitiated: "userInitiated", Background: "background" },
   open: async (target: string) => {
     host.opened.push(target);
   },

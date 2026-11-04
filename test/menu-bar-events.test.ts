@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 
-const { eventTypeSummary, newestEventDate, unseenEvents } = await import("../src/lib/events");
+const { eventTypeSummary, menuEventRows, newestEventDate, unseenEvents } = await import("../src/lib/events");
 
 const event = (id: string, occurredAt: string) => ({ id, type: "tweet.new", occurredAt, data: {} });
 
@@ -41,5 +41,51 @@ describe("eventTypeSummary", () => {
 
   test("counts several event types", () => {
     expect(eventTypeSummary(["tweet.new", "tweet.reply", "follower.added"])).toBe("3 Events");
+  });
+});
+
+describe("menuEventRows", () => {
+  const bioChange = (id: string) => ({
+    id,
+    type: "profile.bio.changed",
+    occurredAt: "2026-11-04T10:05:00.000Z",
+    username: "NASA",
+    data: {},
+  });
+  const visible = (rows: { title: string; subtitle: string }[]) =>
+    rows.map(({ title, subtitle }) => [title, subtitle.replace(/\s/g, " ")]);
+
+  test("shows when each event happened", () => {
+    const newPost = { ...bioChange("1"), type: "tweet.new", data: { id: "2", text: "Hello\nworld" } };
+    expect(visible(menuEventRows([newPost, bioChange("2")]))).toEqual([
+      ["Hello world", "New Post · Nov 4, 2026, 10:05 AM"],
+      ["Bio Changed", "@NASA · Nov 4, 2026, 10:05 AM"],
+    ]);
+  });
+
+  test("tells apart events that happened together", () => {
+    expect(visible(menuEventRows([bioChange("3"), bioChange("2"), bioChange("1")]))).toEqual([
+      ["Bio Changed", "@NASA · Nov 4, 2026, 10:05 AM"],
+      ["Bio Changed", "@NASA · Nov 4, 2026, 10:05 AM (2)"],
+      ["Bio Changed", "@NASA · Nov 4, 2026, 10:05 AM (3)"],
+    ]);
+  });
+
+  test("never repeats a row", () => {
+    const events = ["profile.bio.changed", "tweet.deleted"].flatMap((type) =>
+      ["NASA", "SpaceX"].flatMap((username) =>
+        ["2026-11-04T10:05:00.000Z", "2026-11-04T10:05:30.000Z"].flatMap((occurredAt) =>
+          ["1", "2", "3"].map((copy) => ({
+            id: `${type}-${username}-${occurredAt}-${copy}`,
+            type,
+            username,
+            occurredAt,
+            data: {},
+          })),
+        ),
+      ),
+    );
+    const rows = menuEventRows(events).map(({ title, subtitle }) => JSON.stringify([title, subtitle]));
+    expect(new Set(rows).size).toBe(events.length);
   });
 });
