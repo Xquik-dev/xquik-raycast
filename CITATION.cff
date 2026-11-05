@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: If you use Xquik Raycast Twitter extension, cite it using this metadata.
+title: Xquik Raycast Twitter extension
+type: software
+abstract: >-
+  Raycast Twitter extension for Xquik. Run tweet search with Twitter search
+  operators and read profiles, replies, trends & monitors from Raycast.
+authors:
+  - name: Xquik
+    website: https://xquik.com
+url: https://github.com/Xquik-dev/xquik-raycast
+repository-code: https://github.com/Xquik-dev/xquik-raycast
+license: MIT
+keywords:
+  - Xquik
+  - Raycast Twitter
+  - tweet search
+  - Twitter search operators
+  - Raycast extension
+  - X API
