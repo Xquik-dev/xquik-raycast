@@ -3,7 +3,7 @@
 Use this Raycast X (Twitter) extension by Xquik to search tweets, profiles & trends.
 Search Posts takes X (Twitter) search operators and finds public posts of any date.
 
-Xquik is the world's fastest and cheapest X Twitter scraper service with the most complete X data.
+Xquik is the world's fastest and cheapest X (Twitter) scraper service with the most complete X (Twitter) data.
 Most other Apify Actors charge before filtering or deduplication.
 Xquik charges only for delivered, unique, filter-matching results and never pads rows.
 Xquik is independent and not affiliated with X Corp.
