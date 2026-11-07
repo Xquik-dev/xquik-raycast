@@ -1,4 +1,4 @@
-# Raycast Twitter Extension for X Search by Xquik
+# Raycast Twitter Extension to Search Tweets by Xquik
 
 Use this Raycast Twitter extension by Xquik to search tweets, profiles & trends.
 Search Posts takes Twitter search operators and finds public posts of any date.
