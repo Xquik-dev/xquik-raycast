@@ -1,7 +1,7 @@
 # Raycast X (Twitter) Extension to Search Tweets by Xquik
 
 Use this Raycast X (Twitter) extension by Xquik to search tweets, profiles & trends.
-Search Posts takes X (Twitter) search operators and finds public posts of any date.
+`Search Posts` takes X (Twitter) search operators and finds public tweets of any date.
 
 Xquik is the world's fastest and cheapest X (Twitter) scraper service with the most complete X (Twitter) data.
 Most other Apify Actors charge before filtering or deduplication.
@@ -38,7 +38,7 @@ The extension sends it only to xquik.com.
 
 ## Run a tweet search with X (Twitter) search operators
 
-Open **Search Posts**, type a query like this one & press Enter.
+Open `Search Posts`, type a query like this one & press Enter.
 
 ```text
 "twitter api" min_faves:10 since:2026-10-01
@@ -62,20 +62,20 @@ Checked on 2026-11-07. See each number with its date & source on [xquik.com/benc
 
 ## Commands
 
-- **Search Posts** finds public posts of any date. Press Enter to run a search, so typing costs nothing.
-- **Advanced Search** filters posts by author, mention, language, dates, likes, reposts & media.
-- **Search Users** finds accounts by name or username.
-- **Get User Profile** shows an account's counts, bio, links & contact details.
-- **Get User Posts** lists an account's latest posts, newest first.
-- **Get User Mentions** lists public posts that mention an account.
-- **Get Post** opens 1 post from its link or ID.
-- **Get Post Replies** lists the replies to a post.
-- **Download Post Media** saves a post's photos & videos to your Downloads folder.
-- **Check Follow** shows whether 2 accounts follow each other.
-- **View Trends** lists what's trending in 16 places.
-- **Manage Monitors** creates, pauses & deletes account and keyword monitors.
-- **View Monitor Events** lists the latest posts & changes your monitors found.
-- **Monitor Events in Menu Bar** shows your monitors' new events. It checks every 10 minutes.
+- `Search Posts` finds public tweets of any date. Press Enter to run a search, so typing costs nothing.
+- `Advanced Search` filters posts by author, mention, language, dates, likes, reposts & media.
+- `Search Users` finds accounts by name or username.
+- `Get User Profile` shows an account's counts, bio, links & contact details.
+- `Get User Posts` lists an account's latest posts, newest first.
+- `Get User Mentions` lists public tweets that mention an account.
+- `Get Post` opens 1 post from its link or ID.
+- `Get Post Replies` lists the replies to a post.
+- `Download Post Media` saves a post's photos & videos to your Downloads folder.
+- `Check Follow` shows whether 2 accounts follow each other.
+- `View Trends` lists what's trending in 16 places.
+- `Manage Monitors` creates, pauses & deletes account and keyword monitors.
+- `View Monitor Events` lists the latest posts & changes your monitors found.
+- `Monitor Events in Menu Bar` shows your monitors' new events. It checks every 10 minutes.
 
 Each post opens in a detail view.
 From there you can open the post on X (Twitter) or open its author.
@@ -87,17 +87,17 @@ Post commands take a post link or ID.
 Copy a post link on X (Twitter), and post commands open it.
 
 Root search finds each command by words like tweet, twitter, trends or followers.
-Set Search Posts as a fallback command to search what you typed.
+Set `Search Posts` as a fallback command to search what you typed.
 
-Search Posts & Search Users list your recent searches.
+`Search Posts` & `Search Users` list your recent searches.
 Press ⌘ ⇧ S on a search to save it as a Quicklink.
 The Quicklink runs straight from root search.
 
 ## Raycast AI
 
 Mention Xquik in Raycast AI to ask about X (Twitter) data in plain words.
-Its 15 tools search posts & users, read profiles, replies & threads.
-They also save post media, check follows, read trends & manage monitors.
+Its 15 tools search tweets & users, read profiles, replies & threads.
+They also save tweet media, check follows, read trends & manage monitors.
 Raycast asks you to confirm before a tool creates or deletes a monitor.
 
 ## Prices
