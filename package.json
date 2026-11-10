@@ -47,6 +47,7 @@
       "icon": "search-posts.png",
       "mode": "view",
       "keywords": [
+        "s",
         "tweets",
         "twitter",
         "x",
@@ -69,6 +70,7 @@
       "icon": "advanced-search.png",
       "mode": "view",
       "keywords": [
+        "a",
         "tweets",
         "twitter",
         "x",
@@ -85,6 +87,7 @@
       "icon": "search-users.png",
       "mode": "view",
       "keywords": [
+        "u",
         "accounts",
         "people",
         "handle",
@@ -108,6 +111,7 @@
       "icon": "get-user-profile.png",
       "mode": "view",
       "keywords": [
+        "p",
         "profile",
         "account",
         "bio",
@@ -132,6 +136,7 @@
       "icon": "get-user-posts.png",
       "mode": "view",
       "keywords": [
+        "l",
         "tweets",
         "timeline",
         "latest",
@@ -155,6 +160,7 @@
       "icon": "get-user-mentions.png",
       "mode": "view",
       "keywords": [
+        "m",
         "mentions",
         "tagged",
         "brand",
@@ -178,6 +184,7 @@
       "icon": "get-post.png",
       "mode": "view",
       "keywords": [
+        "o",
         "tweet",
         "open tweet",
         "link",
@@ -201,6 +208,7 @@
       "icon": "get-post-replies.png",
       "mode": "view",
       "keywords": [
+        "r",
         "tweet replies",
         "comments",
         "conversation",
@@ -224,6 +232,7 @@
       "icon": "download-post-media.png",
       "mode": "no-view",
       "keywords": [
+        "d",
         "video",
         "download video",
         "save video",
@@ -250,6 +259,7 @@
       "icon": "check-follow.png",
       "mode": "view",
       "keywords": [
+        "f",
         "follows",
         "follower",
         "following",
@@ -280,6 +290,7 @@
       "icon": "view-trends.png",
       "mode": "view",
       "keywords": [
+        "t",
         "trending",
         "hashtags",
         "topics",
@@ -295,6 +306,7 @@
       "icon": "manage-monitors.png",
       "mode": "view",
       "keywords": [
+        "w",
         "track",
         "alerts",
         "watch",
@@ -311,6 +323,7 @@
       "icon": "view-monitor-events.png",
       "mode": "view",
       "keywords": [
+        "e",
         "alerts",
         "notifications",
         "activity",
@@ -327,6 +340,7 @@
       "mode": "menu-bar",
       "interval": "10m",
       "keywords": [
+        "b",
         "notifications",
         "alerts",
         "menu bar",
