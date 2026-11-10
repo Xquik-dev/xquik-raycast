@@ -91,6 +91,20 @@ Post commands take a post link or ID.
 Copy a post link on X (Twitter), and post commands open it.
 
 Root search finds each command by words like tweet, twitter, trends or followers.
+Each command also answers to 1 letter in root search.
+
+| Letter | Command | Letter | Command |
+| --- | --- | --- | --- |
+| `s` | `Search Posts` | `o` | `Get Post` |
+| `a` | `Advanced Search` | `r` | `Get Post Replies` |
+| `u` | `Search Users` | `d` | `Download Post Media` |
+| `p` | `Get User Profile` | `f` | `Check Follow` |
+| `l` | `Get User Posts` | `t` | `View Trends` |
+| `m` | `Get User Mentions` | `w` | `Manage Monitors` |
+| `e` | `View Monitor Events` | `b` | `Monitor Events in Menu Bar` |
+
+Raycast ranks title matches above these letters.
+Set the letter as the command's alias in Raycast's settings to put it first.
 Set `Search Posts` as a fallback command to search what you typed.
 
 `Search Posts` & `Search Users` list your recent searches.
