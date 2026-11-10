@@ -445,5 +445,8 @@
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",
     "publish": "npx @raycast/api@latest publish"
+  },
+  "overrides": {
+    "minimatch@^10": "11.0.4"
   }
 }
