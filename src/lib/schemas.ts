@@ -112,9 +112,9 @@ export const eventPageSchema = z.object({
 });
 
 export const savedMediaSchema = z.object({
-  mediaUrl: z.string(),
+  mediaUrl: z.url({ protocol: /^https$/ }),
   mediaType: z.string(),
-  tweetId: z.string(),
+  tweetId: z.string().regex(/^\d+$/),
 });
 export type SavedMedia = z.infer<typeof savedMediaSchema>;
 
