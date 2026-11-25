@@ -81,7 +81,7 @@ describe("saveMedia", () => {
       fetched.push(String(url));
       return new Response(
         JSON.stringify({
-          items: [{ tweetId: "../..", mediaType: "photo", mediaUrl: "https://media.xquik.com/tweet_20/0.jpg" }],
+          items: [{ tweetId: "/../../evil", mediaType: "photo", mediaUrl: "https://media.xquik.com/tweet_20/0.jpg" }],
         }),
       );
     }) as typeof fetch;
