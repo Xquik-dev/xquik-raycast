@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, test } from "bun:test";
+import fc from "fast-check";
 import { mkdtemp, readFile, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -19,6 +20,25 @@ describe("mediaFileName", () => {
   test("falls back to the media type", () => {
     const item = { tweetId: "1234567890", mediaType: "video", mediaUrl: "https://media.xquik.com/t/0" };
     expect(mediaFileName(item, 0)).toBe("xquik-1234567890-0.mp4");
+  });
+
+  test("falls back to the media type when the URL's extension holds more than letters and digits", () => {
+    const item = { tweetId: "1234567890", mediaType: "photo", mediaUrl: "https://media.xquik.com/t/0.j%2Fpg" };
+    expect(mediaFileName(item, 1)).toBe("xquik-1234567890-1.jpg");
+  });
+
+  test("names every file inside its folder, whatever URL the API gives", () => {
+    fc.assert(
+      fc.property(
+        fc.stringMatching(/^\d{1,19}$/),
+        fc.nat(50),
+        fc.constantFrom("photo", "video", "animated_gif"),
+        fc.webUrl({ withQueryParameters: true, withFragments: true }),
+        (tweetId, index, mediaType, mediaUrl) => {
+          expect(mediaFileName({ tweetId, mediaType, mediaUrl }, index)).toMatch(/^xquik-\d+-\d+\.[a-z0-9]{1,8}$/i);
+        },
+      ),
+    );
   });
 });
 
@@ -50,6 +70,28 @@ describe("saveMedia", () => {
       expect(await readFile(paths[0], "utf8")).toBe("0.jpg");
     } finally {
       await rm(folder, { recursive: true });
+    }
+  });
+
+  test("writes nothing when the API names a post ID that would leave the folder", async () => {
+    const parent = await mkdtemp(join(tmpdir(), "xquik-media-"));
+    const folder = join(parent, "Downloads");
+    const fetched: string[] = [];
+    globalThis.fetch = (async (url: URL | string) => {
+      fetched.push(String(url));
+      return new Response(
+        JSON.stringify({
+          items: [{ tweetId: "../..", mediaType: "photo", mediaUrl: "https://media.xquik.com/tweet_20/0.jpg" }],
+        }),
+      );
+    }) as typeof fetch;
+
+    try {
+      await expect(saveMedia("20", folder)).rejects.toMatchObject({ kind: "unexpected" });
+      expect(fetched).toEqual(["https://xquik.com/api/v1/x/media/download"]);
+      expect(await readdir(parent)).toEqual([]);
+    } finally {
+      await rm(parent, { recursive: true });
     }
   });
 });
